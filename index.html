@@ -1,32 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exported Figma Design</title>
-  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharaonic QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            background-color: #F4E4BC;
+            font-family: 'Papyrus', sans-serif;
+            color: #2F1B0F;
+            margin: 0;
+            padding: 20px;
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M10 10 H90 V90 H10 Z" fill="none" stroke="%23D4A017" stroke-width="0.5" opacity="0.1"/%3E%3C/svg%3E');
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 245, 224, 0.9);
+            border: 3px solid #D4A017;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2F1B0F;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #D4A017;
+            border-bottom: 2px solid #D4A017;
+            padding-bottom: 10px;
+        }
+
+        .input-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #EBD9A1;
+            border: 2px solid #D4A017;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #D4A017;
+            background: #FFF5E1;
+            font-size: 1.1em;
+            color: #2F1B0F;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #D4A017;
+            color: #2F1B0F;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #B58900;
+            transform: scale(1.05);
+        }
+
+        #qr-code {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #EBD9A1;
+            border: 2px solid #D4A017;
+            border-radius: 5px;
+        }
+
+        .hieroglyphs {
+            text-align: center;
+            font-size: 1.5em;
+            color: #D4A017;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-<div class="cover-1">
-  <p class="text-2"><span class="text-white">Barcode Generator </span></p>
-  <div class="frame-2-3">
-    <p class="text-4"><span class="text-black">By Saroj Shahi</span></p>
-  </div>
-  <div class="group-5-5">
-    <div class="frame-1-6">
-      <div class="bx-user-7">
-        <img src="vector-8.svg" class="vector-8" alt="vector" />
-      </div>
-      <p class="text-9"><span class="text-black">25K+ Used</span></p>
+    <div class="container">
+        <h1>𓏏𓋴𓂧𓄿𓇋𓇋 - QR Code Generator</h1>
+        <div class="hieroglyphs">𓀀 𓁶 𓇋 𓍯 𓂧 𓇋 𓅱</div>
+        
+        <div class="input-section">
+            <input type="text" id="qrInput" placeholder="Enter text or URL for QR Code">
+            <button onclick="generateQR()">Generate Papyrus QR</button>
+        </div>
+
+        <div id="qr-code"></div>
+        
+        <div class="hieroglyphs">𓇋 𓅱 𓂧 𓄿 𓇋 𓏏 𓍯</div>
     </div>
-  </div>
-  <div class="frame-2-10">
-    <img src="image-2-11.png" class="image-2-11" alt="image-2" />
-    <div class="frame-4-12">
-      <img src="image-3-13.png" class="image-3-13" alt="image-3" />
-    </div>
-  </div>
-</div>
+
+    <script>
+        function generateQR() {
+            const qrInput = document.getElementById('qrInput').value;
+            const qrCodeDiv = document.getElementById('qr-code');
+            
+            // Clear previous QR code
+            qrCodeDiv.innerHTML = '';
+
+            if (qrInput) {
+                new QRCode(qrCodeDiv, {
+                    text: qrInput,
+                    width: 256,
+                    height: 256,
+                    colorDark : "#2F1B0F",
+                    colorLight : "#F4E4BC"
+                });
+            } else {
+                qrCodeDiv.innerHTML = '<p style="color: #2F1B0F">Please enter text to generate a QR code</p>';
+            }
+        }
+    </script>
 </body>
 </html>
