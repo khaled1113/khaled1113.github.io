@@ -6,50 +6,175 @@
     <title>Pharaonic QR Code Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
+        /* Modern CSS Reset and Font Import */
+        @font-face {
+            font-family: 'Manrope';
+            src: url('fonts/manrope.woff2') format('woff2'),
+                 url('fonts/manrope.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --primary: #6A24FF;
+            --primary-light: rgba(106, 36, 255, 0.1);
+            --secondary: #1D2254;
+            --dark: #000000;
+            --grey: #A3A3A3;
+            --grey-light: #F5F5F5;
+            --white: #FFFFFF;
+            --text-color: #3A3D5B;
+            --font-family-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: var(--font-family-manrope);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             background-color: #F4E4BC;
-            font-family: 'Papyrus', sans-serif;
             color: #2F1B0F;
             margin: 0;
             padding: 20px;
             background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M10 10 H90 V90 H10 Z" fill="none" stroke="%23D4A017" stroke-width="0.5" opacity="0.1"/%3E%3C/svg%3E');
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         .container {
-            max-width: 800px;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 245, 224, 0.9);
-            border: 3px solid #D4A017;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 4px solid var(--dark);
+            background-color: rgba(255, 245, 224, 0.9);
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 10px 15px rgba(0, 0, 0, 0.1),
+                0 20px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-4px);
         }
 
         h1 {
             text-align: center;
             color: #2F1B0F;
-            font-size: 2.5em;
+            font-size: clamp(2rem, 4vw, 43px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
             text-shadow: 2px 2px 4px #D4A017;
             border-bottom: 2px solid #D4A017;
             padding-bottom: 10px;
+            margin-bottom: 2rem;
         }
 
+        .hieroglyphs {
+            text-align: center;
+            font-size: 1.5em;
+            color: #D4A017;
+            margin: 20px 0;
+        }
+
+        /* Temple Selection Section */
+        .temple-selection {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background-color: #a8a695;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .temple-selection:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(109, 41, 78, 0.3);
+        }
+
+        .temple {
+            background-color: #EBD9A1;
+            border: 2px solid #D4A017;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .temple:hover {
+            transform: translateY(-2px);
+        }
+
+        .temple img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .temple h2 {
+            font-size: clamp(1.5rem, 3vw, 35px);
+            font-weight: 800;
+            color: #2F1B0F;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            margin: 10px 0;
+        }
+
+        /* Form Section */
         .input-section {
             margin: 20px 0;
             padding: 15px;
             background: #EBD9A1;
             border: 2px solid #D4A017;
             border-radius: 5px;
+            display: none;
         }
 
-        input[type="text"] {
-            width: 70%;
+        .input-section input[type="text"],
+        .input-section input[type="tel"],
+        .input-section select {
+            width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 2px solid #D4A017;
             background: #FFF5E1;
             font-size: 1.1em;
             color: #2F1B0F;
+            border-radius: 5px;
+        }
+
+        .credit-card-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .credit-card-details input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #D4A017;
+            background: #FFF5E1;
+            font-size: 1.1em;
+            color: #2F1B0F;
+            border-radius: 5px;
         }
 
         button {
@@ -68,6 +193,7 @@
             transform: scale(1.05);
         }
 
+        /* QR Code Section */
         #qr-code {
             text-align: center;
             margin: 20px 0;
@@ -75,51 +201,118 @@
             background: #EBD9A1;
             border: 2px solid #D4A017;
             border-radius: 5px;
+            display: none;
         }
 
-        .hieroglyphs {
-            text-align: center;
-            font-size: 1.5em;
-            color: #D4A017;
-            margin: 20px 0;
+        /* Hide sections initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .temple-selection {
+                flex-direction: column;
+            }
+
+            .temple {
+                width: 100%;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>𓏏𓋴𓂧𓄿𓇋𓇋 - QR Code Generator</h1>
+        <h1>𓏏𓋴𓂧𓄿𓇋𓇋 - Pharaonic QR Code Generator</h1>
         <div class="hieroglyphs">𓀀 𓁶 𓇋 𓍯 𓂧 𓇋 𓅱</div>
-        
-        <div class="input-section">
-            <input type="text" id="qrInput" placeholder="Enter text or URL for QR Code">
-            <button onclick="generateQR()">Generate Papyrus QR</button>
+
+        <!-- Temple Selection Section -->
+        <div id="temple-selection" class="temple-selection">
+            <div class="temple" onclick="selectTemple('luxor')">
+                <img src="luxor-temple.jpg" alt="Luxor Temple">
+                <h2>Luxor Temple</h2>
+            </div>
+            <div class="temple" onclick="selectTemple('karnak')">
+                <img src="karnak-temple.jpg" alt="Karnak Temple">
+                <h2>Karnak Temple</h2>
+            </div>
         </div>
 
+        <!-- Form Section -->
+        <div id="input-section" class="input-section">
+            <h1 id="temple-name">Temple Form</h1>
+            <form id="qr-form">
+                <input type="text" id="name" placeholder="Enter your name" required>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                <select id="payment-method" onchange="toggleCreditCardDetails()" required>
+                    <option value="" disabled selected>Select payment method</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cash">Cash on Delivery</option>
+                </select>
+                <div id="credit-card-details" class="credit-card-details">
+                    <input type="text" id="card-number" placeholder="Credit Card Number">
+                    <input type="text" id="card-expiry" placeholder="MM/YY">
+                    <input type="text" id="card-cvc" placeholder="CVC">
+                </div>
+                <button type="submit">Generate Papyrus QR</button>
+            </form>
+        </div>
+
+        <!-- QR Code Section -->
         <div id="qr-code"></div>
-        
+
         <div class="hieroglyphs">𓇋 𓅱 𓂧 𓄿 𓇋 𓏏 𓍯</div>
     </div>
 
     <script>
-        function generateQR() {
-            const qrInput = document.getElementById('qrInput').value;
-            const qrCodeDiv = document.getElementById('qr-code');
-            
-            // Clear previous QR code
-            qrCodeDiv.innerHTML = '';
+        // Show/hide sections
+        const templeSelection = document.getElementById('temple-selection');
+        const inputSection = document.getElementById('input-section');
+        const qrCodeSection = document.getElementById('qr-code');
 
-            if (qrInput) {
-                new QRCode(qrCodeDiv, {
-                    text: qrInput,
-                    width: 256,
-                    height: 256,
-                    colorDark : "#2F1B0F",
-                    colorLight : "#F4E4BC"
-                });
+        function selectTemple(temple) {
+            templeSelection.classList.add('hidden');
+            inputSection.style.display = 'block';
+            const templeName = temple === 'luxor' ? 'Luxor Temple' : 'Karnak Temple';
+            document.getElementById('temple-name').textContent = `Generate QR Code for ${templeName}`;
+        }
+
+        // Toggle credit card details based on payment method
+        function toggleCreditCardDetails() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const creditCardDetails = document.getElementById('credit-card-details');
+            if (paymentMethod === 'credit-card') {
+                creditCardDetails.style.display = 'block';
             } else {
-                qrCodeDiv.innerHTML = '<p style="color: #2F1B0F">Please enter text to generate a QR code</p>';
+                creditCardDetails.style.display = 'none';
             }
         }
+
+        // Handle form submission
+        document.getElementById('qr-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Hide form and show QR code section
+            inputSection.style.display = 'none';
+            qrCodeSection.style.display = 'block';
+
+            // Clear previous QR code
+            qrCodeSection.innerHTML = '';
+
+            // Generate QR code for the number "1"
+            new QRCode(qrCodeSection, {
+                text: "1",
+                width: 256,
+                height: 256,
+                colorDark: "#2F1B0F",
+                colorLight: "#F4E4BC"
+            });
+        });
     </script>
 </body>
 </html>

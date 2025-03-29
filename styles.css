@@ -1,24 +1,30 @@
-/* Add font files for Manrope */
+/* Modern CSS Reset and Font Import */
 @font-face {
   font-family: 'Manrope';
   src: url('fonts/manrope.woff2') format('woff2'),
        url('fonts/manrope.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-}
-:root {
-  /* Clean up variable names */
-  --primary: rgba(106, 36, 255, 1);
-  --secondary: rgba(29, 34, 84, 1);
-  --dark: rgba(0, 0, 0, 1);
-  --grey: rgba(163, 163, 163, 1);
-  --white: rgba(255, 255, 255, 1);
-  --text-color: rgba(58, 61, 91, 1);
-  --font-family-inter: 'Inter', sans-serif;
-  --font-family-manrope: 'Manrope', sans-serif;
+  font-display: swap; /* Improve font loading */
 }
 
-/* Base styles */
+:root {
+  /* Enhanced color palette with opacity variants */
+  --primary: #6A24FF;
+  --primary-light: rgba(106, 36, 255, 0.1);
+  --secondary: #1D2254;
+  --dark: #000000;
+  --grey: #A3A3A3;
+  --grey-light: #F5F5F5;
+  --white: #FFFFFF;
+  --text-color: #3A3D5B;
+  
+  /* Add system fonts as fallbacks */
+  --font-family-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Enhanced base styles */
 * {
   margin: 0;
   padding: 0;
@@ -30,6 +36,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-family-manrope);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -37,39 +46,48 @@ img {
   height: auto;
 }
 
-/* Text styles */
+/* Improved text styles with better typography */
 .text-2 {
-  font-size: 90px;
+  font-size: clamp(3rem, 8vw, 90px); /* Responsive font size */
   font-weight: 800;
-  line-height: 1.13;
+  line-height: 1.1;
   color: var(--white);
   text-align: center;
   margin-bottom: 2rem;
+  letter-spacing: -0.02em;
 }
 
 .text-4 {
-  font-size: 35px;
+  font-size: clamp(1.5rem, 3vw, 35px);
   font-weight: 800;
   color: var(--dark);
   text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .text-9 {
-  font-size: 43px;
+  font-size: clamp(2rem, 4vw, 43px);
   font-weight: 800;
-  line-height: 1.13;
+  line-height: 1.2;
   color: var(--dark);
+  letter-spacing: -0.01em;
 }
 
-/* Component styles */
+/* Enhanced component styles */
 .frame-2-3 {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 7px 24px;
+  gap: 8px;
+  padding: 12px 28px;
   background-color: var(--white);
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.frame-2-3:hover {
+  transform: translateY(-2px);
 }
 
 .vector-8 {
@@ -92,9 +110,15 @@ img {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 20px;
-  background-color: rgba(255, 229, 0, 1);
-  border-radius: 10px;
+  padding: 20px 24px;
+  background-color: #a8a695;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.frame-1-6:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(109, 41, 78, 0.3);
 }
 
 .group-5-5 {
@@ -127,53 +151,47 @@ img {
   width: 100%;
   max-width: 900px;
   margin: 3rem auto;
-  padding: 2rem;
-  border-radius: 6px;
-  border: 5.5px solid rgba(51, 51, 51, 1);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 4px solid var(--dark);
+  background-color: var(--white);
   box-shadow: 
-    0px 1px 0.9px rgba(0,0,0,0.5),
-    0px 2.6px 2.1px rgba(0,0,0,0.5),
-    0px 5px 4px rgba(0,0,0,0.5),
-    0px 9px 7px rgba(0,0,0,0.5),
-    0px 16.5px 13px rgba(0,0,0,0.5),
-    0px 40px 32px rgba(0,0,0,0.5);
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.1),
+    0 20px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-/* Layout containers */
+.frame-2-10:hover {
+  transform: translateY(-4px);
+}
+
+/* Improved layout containers */
 .cover-1 {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--primary);
-  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--primary), darken(var(--primary), 15%));
+  padding: 6rem 0;
 }
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 max(2rem, 5vw);
 }
 
-/* Media queries */
+/* Refined media queries */
 @media (max-width: 1440px) {
   .container {
-    padding: 0 24px;
+    padding: 0 max(24px, 3vw);
   }
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 0 16px;
-  }
-  
-  .text-2 {
-    font-size: 60px;
-  }
-  
-  .text-4,
-  .text-9 {
-    font-size: 24px;
   }
 }
