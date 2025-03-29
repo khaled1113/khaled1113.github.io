@@ -138,6 +138,13 @@
             margin: 10px 0;
         }
 
+        .temple .price {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #D4A017;
+            margin-top: 5px;
+        }
+
         /* Form Section */
         .input-section {
             margin: 20px 0;
@@ -146,6 +153,14 @@
             border: 2px solid #D4A017;
             border-radius: 5px;
             display: none;
+        }
+
+        .input-section .price-info {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #D4A017;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         .input-section input[type="text"],
@@ -232,19 +247,22 @@
 
         <!-- Temple Selection Section -->
         <div id="temple-selection" class="temple-selection">
-            <div class="temple" onclick="selectTemple('luxor')">
+            <div class="temple" onclick="selectTemple('luxor', 5)">
                 <img src="luxor-temple.jpg" alt="Luxor Temple">
                 <h2>Luxor Temple</h2>
+                <div class="price">$5</div>
             </div>
-            <div class="temple" onclick="selectTemple('karnak')">
+            <div class="temple" onclick="selectTemple('karnak', 7)">
                 <img src="karnak-temple.jpg" alt="Karnak Temple">
                 <h2>Karnak Temple</h2>
+                <div class="price">$7</div>
             </div>
         </div>
 
         <!-- Form Section -->
         <div id="input-section" class="input-section">
             <h1 id="temple-name">Temple Form</h1>
+            <div id="price-info" class="price-info"></div>
             <form id="qr-form">
                 <input type="text" id="name" placeholder="Enter your name" required>
                 <input type="tel" id="phone" placeholder="Enter your phone number" required>
@@ -275,11 +293,12 @@
         const inputSection = document.getElementById('input-section');
         const qrCodeSection = document.getElementById('qr-code');
 
-        function selectTemple(temple) {
+        function selectTemple(temple, price) {
             templeSelection.classList.add('hidden');
             inputSection.style.display = 'block';
             const templeName = temple === 'luxor' ? 'Luxor Temple' : 'Karnak Temple';
             document.getElementById('temple-name').textContent = `Generate QR Code for ${templeName}`;
+            document.getElementById('price-info').textContent = `Price: $${price}`;
         }
 
         // Toggle credit card details based on payment method
