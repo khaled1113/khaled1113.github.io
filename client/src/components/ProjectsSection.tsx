@@ -5,7 +5,7 @@ import { projects } from "@/data/projects";
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   
-  const categories = ["All", "Web Apps", "E-commerce", "Corporate"];
+  const categories = ["All", "IoT Devices", "Industrial", "Robotics", "Medical", "Energy", "Consumer", "Education"];
   
   const filteredProjects = activeCategory === "All" 
     ? projects 

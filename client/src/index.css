@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 220 14.3% 20%;
-  --muted: 60 4.8% 95.9%;
-  --muted-foreground: 25 5.3% 44.7%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 220 14.3% 20%;
+  --background: 60 33% 96%; /* Based on #f5f5dc (beige) */
+  --foreground: 158 83% 20%; /* Based on #095d40 (dark green) */
+  --muted: 60 33% 90%;
+  --muted-foreground: 158 30% 30%;
+  --popover: 60 33% 96%;
+  --popover-foreground: 158 83% 20%;
   --card: 0 0% 100%;
-  --card-foreground: 220 14.3% 20%;
-  --border: 20 5.9% 90%;
-  --input: 20 5.9% 90%;
-  --primary: 220 14.3% 20%;
-  --primary-foreground: 210 20% 98%;
-  --secondary: 43 74% 49%;
-  --secondary-foreground: 220 14.3% 20%;
-  --accent: 60 4.8% 95.9%;
-  --accent-foreground: 24 9.8% 10%;
+  --card-foreground: 158 83% 20%;
+  --border: 60 33% 85%;
+  --input: 60 33% 85%;
+  --primary: 158 83% 20%; /* #095d40 (dark green) */
+  --primary-foreground: 60 33% 96%;
+  --secondary: 60 33% 85%; /* Based on #f5f5dc (beige) */
+  --secondary-foreground: 158 83% 20%; 
+  --accent: 60 33% 90%;
+  --accent-foreground: 158 83% 25%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 220 14.3% 20%;
+  --ring: 158 83% 20%;
   --radius: 0.5rem;
 }
 

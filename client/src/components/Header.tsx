@@ -58,11 +58,20 @@ export default function Header() {
               Experience
             </motion.a>
             <motion.a 
-              href="#projects" 
+              href="#certificates" 
               className="nav-link font-medium text-primary hover:text-secondary transition-colors"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
+            >
+              Certificates
+            </motion.a>
+            <motion.a 
+              href="#projects" 
+              className="nav-link font-medium text-primary hover:text-secondary transition-colors"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
             >
               Projects
             </motion.a>
@@ -71,7 +80,7 @@ export default function Header() {
               className="nav-link font-medium text-primary hover:text-secondary transition-colors"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
             >
               Contact
             </motion.a>
@@ -116,6 +125,13 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Experience
+              </a>
+              <a 
+                href="#certificates" 
+                className="font-medium text-primary hover:text-secondary transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Certificates
               </a>
               <a 
                 href="#projects" 
