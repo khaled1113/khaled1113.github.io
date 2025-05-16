@@ -1,4 +1,4 @@
-# John Doe - Portfolio
+# Khalid Waleed - Portfolio
 
 A professional portfolio website showcasing embedded systems engineering, PCB design, and Fusion 360 design work.
 
