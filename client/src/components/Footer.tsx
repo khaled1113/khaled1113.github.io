@@ -30,6 +30,7 @@ export default function Footer() {
           >
             <a href="#about" className="hover:text-secondary transition-colors">About</a>
             <a href="#experience" className="hover:text-secondary transition-colors">Experience</a>
+            <a href="#certificates" className="hover:text-secondary transition-colors">Certificates</a>
             <a href="#projects" className="hover:text-secondary transition-colors">Projects</a>
             <a href="#contact" className="hover:text-secondary transition-colors">Contact</a>
           </motion.div>
