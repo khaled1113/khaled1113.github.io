@@ -35,13 +35,13 @@ export interface Certificate {
 }
 
 export const personalInfo: PersonalInfo & { certificates: Certificate[] } = {
-  name: "John Doe",
+  name: "Khalid Waleed",
   title: "Embedded Systems & PCB Designer",
   email: "hello@johndoe.com",
   phone: "+1 (555) 123-4567",
   location: "San Francisco, California",
   bio: {
-    paragraph1: "With over 8 years of experience in embedded systems and PCB design, I specialize in creating innovative hardware solutions from concept to production. My expertise combines electronics engineering with mechanical design skills for complete prototyping solutions.",
+    paragraph1: "I’m a multidisciplinary engineer with expertise in embedded systems, web development, and mechanical design. My hands-on experience in product prototyping and iterative development enables me to create innovative solutions that integrate hardware and software. I thrive in fast-paced, collaborative environments—especially startups—where creativity and technical skill drive meaningful impact. I'm always open to new opportunities and collaborations that push the boundaries of technology.",
     paragraph2: "I've worked with startups and established companies across various industries, developing custom embedded systems, IoT devices, and industrial control systems that meet specialized requirements while maintaining reliability and performance."
   },
   skills: [
@@ -51,15 +51,10 @@ export const personalInfo: PersonalInfo & { certificates: Certificate[] } = {
     "Rapid Prototyping"
   ],
   education: [
-    {
-      degree: "MSc Electrical Engineering",
-      institution: "Stanford University",
-      year: "2016"
-    },
-    {
+   {
       degree: "BSc Electronics Engineering",
-      institution: "MIT",
-      year: "2014"
+      institution: "Mansoura Higher Institute for Engineering and Technology",
+      year: "2021"
     }
   ],
   certificates: [
